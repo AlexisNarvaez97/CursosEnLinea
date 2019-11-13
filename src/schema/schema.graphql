@@ -1,19 +1,17 @@
 type Query {
     "Lista de los estudiantes de la academia"
-    estudiantes: String
+    estudiantes: [Estudiante!]!
 }
 
-""" El signo ! significa NO NULO """
 
-# "Informacion de los estudiantes"
-
+"Informacion de los estudiantes"
 type Estudiante {
     "Identificativo del estudiante"
     id: ID!
     name: String!
     email: String!
     website: String
-    course: [Curso!]!
+    courses: [Curso!]!
 }
 
 type Curso {

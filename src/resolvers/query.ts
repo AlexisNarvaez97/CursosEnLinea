@@ -23,6 +23,25 @@ const query: IResolvers = {
     },
     cursos(): any {
       return database.cursos;
+    },
+    curso(__: void, {id}): any {
+        const resultado = database.cursos.filter( curso => curso.id === id)[0];
+
+        if (resultado === undefined) {
+            return {
+                id: '-1',
+                title: `No hay un curso con este ID ${id}`,
+                description: '',
+                clases: -1,
+                time: 0.0,
+                logo: '',
+                level: 'TODOS',
+                path: '',
+                teacher: '',
+                reviews: []
+            }
+        }
+        return resultado;
     }
   }
 };

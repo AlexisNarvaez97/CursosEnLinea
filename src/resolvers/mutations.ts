@@ -2,6 +2,8 @@ import { IResolvers } from "graphql-tools";
 import _ from "lodash";
 import { database } from "../data/data.store";
 
+// No entendí muy bien como funciono el metodo modificar CURSO OJO.
+
 const mutation: IResolvers = {
   Mutation: {
     cursoNuevo(__: void, { curso }): any {
@@ -62,6 +64,28 @@ const mutation: IResolvers = {
         teacher: "",
         reviews: []
       };
+    },
+    eliminarCurso(__: void, { id }): any {
+        const borrarCurso = _.remove(database.cursos, function(curso){
+            return curso.id  === id;
+        });
+
+        if (borrarCurso[0] === undefined) {
+
+            return {
+                id: "-1",
+                title: `El curso no se puede borrar por que no se encuentra ningun curso con ese id en la base de datos`,
+                description: "",
+                clases: -1,
+                time: 0.0,
+                level: "TODOS",
+                logo: "",
+                path: "",
+                teacher: "",
+                reviews: []
+              };
+        }
+        return borrarCurso[0];
     }
   }
 };

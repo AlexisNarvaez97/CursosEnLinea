@@ -9,7 +9,7 @@ type Query {
   curso(id: ID!): Curso!
 }
 
-type Mutations {
+type Mutation {
   cursoNuevo(curso: CursoInput!): Curso!
   modificarCurso(curso: CursoInput!): Curso!
   eliminarCurso(id: ID!): Curso!
